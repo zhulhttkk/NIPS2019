@@ -6,6 +6,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.autograd import Variable
+from torchvision.utils import save_image
 
 BATCH_SIZE = 64
 
@@ -37,10 +38,10 @@ class CIFAR10:
         ])
 
         trainset = datasets.CIFAR10(root='./data', train=True, download=True,transform=transform_train)  # 训练数据集
-        self.trainloader = torch.utils.data.DataLoader(trainset, batch_size=BATCH_SIZE, shuffle=True,num_workers=2)
+        self.trainloader = torch.utils.data.DataLoader(trainset, batch_size=BATCH_SIZE, shuffle=True)
 
         testset = datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
-        self.testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=2)
+        self.testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False)
 
 class MNIST:
     def __init__(self):

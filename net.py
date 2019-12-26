@@ -71,6 +71,8 @@ class Generator_MINST(nn.Module):
     def forward(self,x):
         x = self.encoder(x)
         x = self.decoder(x)
+        x = torch.tanh(x)
+        x = self.constraint*x
         return x
 
     def set_lr_opt(self,lr):
